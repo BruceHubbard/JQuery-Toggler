@@ -1,13 +1,12 @@
 JQuery Button Toggler
 ========================
 
-Button toggling.  Will write more later.
+Turns any html element into a button that toggles between states on click.  It is a good alternative to checkboxes or any other situation where there is a finite amount of possibilities for the user to choose from.
 
-* TODO: Find a better name than toggler
-
-Features
+TODO
 ---
-* Toggle css classes, data values, and/or text on a dom element
+* Find a better name than toggler
+* Work better with input type="checkbox".
 
 Examples
 --- 
@@ -23,9 +22,29 @@ Examples
 		]		
 	});
 
+Options
+---
+This example shows every option you can set.  Please don't use this as an example, only set those options that you need.
+
+	$('.example').toggler({
+		//css class to add to the element no matter what the state is
+		class: "button",	
+		
+		//To customize 
+		positiveState: { text: "Enabled", value: true, class="enabled" },
+			
+		//customized states.  If this is set it will ignore TODO
+		//button will default to the first state in the array
+		states: [
+			{ text: "State1", value: "val1", class="s1" }, 	//text - if provided the button's text will be replaced with this
+			{ text: "State2", value: "val2", class="s2" }  	//value - if provided the underlying input's value will be set to this
+															//class - css class to add to the button when in this state															
+		]
+	});
+
 Defaults
 ---
-Calling with options set is the same as calling it with these parameters:
+Calling with no options set is the same as calling it with these parameters:
 
 	$('.example').toggler({
 		class: "button",
@@ -57,7 +76,7 @@ Details
 ---
 If applied to an input element
 	- Hide input element
-	- Insert <a> tag with initial button state
+	- Insert &lt;a&gt; tag with initial button state
 	- When button is clicked update input element's value
 Otherwise
 	- applied to any other element and we'll have to store the value in a data attribute
@@ -75,6 +94,7 @@ you would end up with this:
 	<input class="imAbutton" type="hidden" value="true"/>
 	<a href="#" class="button positive">Yes</a>
 
+<input class="imAbutton" value="true"/>
 if you clicked the button you would end up with this:
 
 	<input class="imAbutton" type="hidden" value="false"/>
