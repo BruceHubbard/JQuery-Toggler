@@ -10,7 +10,7 @@ Features
 * Toggle css classes on a button along with values
 
 Options
----
+--- 
 	$('.example').toggler({
 	
 	})
