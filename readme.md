@@ -7,9 +7,14 @@ TODO
 ---
 * Find a better name than toggler
 * Work better with input type="checkbox".
+* If value is set on input then search for that state and default it to
+* Maybe add a callback where you could fire off other events upon the button being clicked.
+* Clean up code
 
 Examples
 --- 
+Look in the Examples folder above for better examples.  These are just a couple really simple examples.
+
 	//Using the defaults you will get a Yes/No button
 	$('.example').toggler();
 	
@@ -22,6 +27,12 @@ Examples
 		]		
 	});
 
+Other examples:
+
+	Examples/defaults.html - shows off the default functionality of the plugin
+	Examples/stoplight.html - creates a button with three states green/yellow/red
+	Examples/enabledisable.html - another simple example showing positiveState/negativeState customization
+
 Options
 ---
 This example shows every option you can set.  Please don't use this as an example, only set those options that you need.
@@ -30,8 +41,15 @@ This example shows every option you can set.  Please don't use this as an exampl
 		//css class to add to the element no matter what the state is
 		class: "button",	
 		
-		//To customize 
+		//If you only need a Yes/No type button you can customize it like this.
+		//NOTE: Populating the "states" property will override this property. 
+		//NOTE: All properties not set (text, value, class) will default to the default positive state's associated property (text: "Yes", value: true, class: "positive")
 		positiveState: { text: "Enabled", value: true, class="enabled" },
+
+		//If you only need a Yes/No type button you can customize it like this.
+		//NOTE: Populating the "states" property will override this property. 
+		//NOTE: All properties not set (text, value, class) will default to the default negative state's associated property (text: "No", value: false, class: "negative")
+		negativeState: { text: "Disabled", value: false, class="disabled" },
 			
 		//customized states.  If this is set it will ignore TODO
 		//button will default to the first state in the array
@@ -94,7 +112,6 @@ you would end up with this:
 	<input class="imAbutton" type="hidden" value="true"/>
 	<a href="#" class="button positive">Yes</a>
 
-<input class="imAbutton" value="true"/>
 if you clicked the button you would end up with this:
 
 	<input class="imAbutton" type="hidden" value="false"/>

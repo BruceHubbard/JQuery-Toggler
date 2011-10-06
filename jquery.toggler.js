@@ -19,20 +19,29 @@
 				input = elem;
 			}
 			
+			if(!opts.states && opts.positiveState) {
+				$.extend(options.states[0], opts.positiveState);
+			}
+
+			if(!opts.states && opts.negativeState) {
+				$.extend(options.states[1], opts.negativeState);
+			}
+			
 			toggle.addClass(options.class);
+			
 			//pick the first state and apply it
-			applyState(toggle, input, options.states[0], null);
+			toggleState(toggle, input, options.states[0], null);
 			
 			//apply events
 			toggle.click(function(e) {
 				var newState = (currentState + 1) % options.states.length;
-				applyState(toggle, input, options.states[newState], options.states[currentState]);
+				toggleState(toggle, input, options.states[newState], options.states[currentState]);
 				currentState = newState;				
 			});
 		});
 	};
 	
-	function applyState(elem, input, newState, oldState) {
+	function toggleState(elem, input, newState, oldState) {
 
 		if(newState.text != null)
 		{
