@@ -51,7 +51,7 @@ This example shows every option you can set.  Please don't use this as an exampl
 		//NOTE: All properties not set (text, value, class) will default to the default negative state's associated property (text: "No", value: false, class: "negative")
 		negativeState: { text: "Disabled", value: false, class="disabled" },
 			
-		//customized states.  If this is set it will ignore TODO
+		//customized states.  If this is set it will ignore the positiveState and negativeState properties
 		//button will default to the first state in the array
 		states: [
 			{ text: "State1", value: "val1", class="s1" }, 	//text - if provided the button's text will be replaced with this
