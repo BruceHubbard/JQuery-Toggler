@@ -1,8 +1,10 @@
-Button toggling.  Will write more later.
+h1. JQuery Button Toggler
 
-TODO: Find a better name than toggler
+p. Button toggling.  Will write more later.
 
-Features: 
+* TODO: Find a better name than toggler
+
+h2. Features
 
 - Toggle css classes on a button along with values
 
