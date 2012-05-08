@@ -19,11 +19,11 @@
 				input = elem;
 			}
 			
-			if(!opts.states && opts.positiveState) {
+			if(opts && !opts.states && opts.positiveState) {
 				$.extend(options.states[0], opts.positiveState);
 			}
 
-			if(!opts.states && opts.negativeState) {
+			if(opts && !opts.states && opts.negativeState) {
 				$.extend(options.states[1], opts.negativeState);
 			}
 			
@@ -34,6 +34,7 @@
 			
 			//apply events
 			toggle.click(function(e) {
+				e.preventDefault();
 				var newState = (currentState + 1) % options.states.length;
 				toggleState(toggle, input, options.states[newState], options.states[currentState]);
 				currentState = newState;				
