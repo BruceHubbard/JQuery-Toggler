@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="JQuery-Toggler : JQuery Button Toggler Plugin" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>JQuery-Toggler</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/BruceHubbard/JQuery-Toggler">View on GitHub</a>
+
+          <h1 id="project_title">JQuery-Toggler</h1>
+          <h2 id="project_tagline">JQuery Button Toggler Plugin</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/BruceHubbard/JQuery-Toggler/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/BruceHubbard/JQuery-Toggler/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>JQuery Button Toggler</h1>
+
+<p>Turns any html element into a button that toggles between states on click.  It is a good alternative to checkboxes or any other situation where there is a finite amount of possibilities for the user to choose from.</p>
+
+<h2>TODO</h2>
+
+<ul>
+<li>Find a better name than toggler</li>
+<li>Work better with input type="checkbox".</li>
+<li>If value is set on input then search for that state and default it to</li>
+<li>Maybe add a callback where you could fire off other events upon the button being clicked.</li>
+<li>Clean up code</li>
+</ul><h2>Examples</h2>
+
+<p>Look in the Examples folder above for better examples.  These are just a couple really simple examples.</p>
+
+<pre><code>//Using the defaults you will get a Yes/No button
+$('.example').toggler();
+
+//You can also specify your own states
+$('.example').toggler({
+    states: [
+        { text: "Go",           value: "go",    class: "green"},
+        { text: "Slow Down",    value: "slow",  class: "yellow"},
+        { text: "Stop",         value: "stop",  class: "red"}
+    ]       
+});
+</code></pre>
+
+<p>Other examples:</p>
+
+<pre><code>Examples/defaults.html - shows off the default functionality of the plugin
+Examples/stoplight.html - creates a button with three states green/yellow/red
+Examples/enabledisable.html - another simple example showing positiveState/negativeState customization
+</code></pre>
+
+<h2>Options</h2>
+
+<p>This example shows every option you can set.  Please don't use this as an example, only set those options that you need.</p>
+
+<pre><code>$('.example').toggler({
+    //css class to add to the element no matter what the state is
+    class: "button",    
+
+    //If you only need a Yes/No type button you can customize it like this.
+    //NOTE: Populating the "states" property will override this property. 
+    //NOTE: All properties not set (text, value, class) will default to the default positive state's associated property (text: "Yes", value: true, class: "positive")
+    positiveState: { text: "Enabled", value: true, class="enabled" },
+
+    //If you only need a Yes/No type button you can customize it like this.
+    //NOTE: Populating the "states" property will override this property. 
+    //NOTE: All properties not set (text, value, class) will default to the default negative state's associated property (text: "No", value: false, class: "negative")
+    negativeState: { text: "Disabled", value: false, class="disabled" },
+
+    //customized states.  If this is set it will ignore the positiveState and negativeState properties
+    //button will default to the first state in the array
+    states: [
+        { text: "State1", value: "val1", class="s1" },  //text - if provided the button's text will be replaced with this
+        { text: "State2", value: "val2", class="s2" }   //value - if provided the underlying input's value will be set to this
+                                                        //class - css class to add to the button when in this state                                                         
+    ]
+});
+</code></pre>
+
+<h2>Defaults</h2>
+
+<p>Calling with no options set is the same as calling it with these parameters:</p>
+
+<pre><code>$('.example').toggler({
+    class: "button",
+    states: [
+        { text: "Yes", value: true,  class: "positive"},
+        { text: "No",  value: false, class: "negative"}
+    ]
+});
+</code></pre>
+
+<h2>Styling</h2>
+
+<p>This plugin doesn't use any predefined css, it's up to you to style the buttons according to the css classes you pass the plugin.  Here is an example that works nicely with the defaults of the plugin and will get you a pretty green/grey yes/no button:</p>
+
+<pre><code>.button {
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #555555;
+}
+
+.positive {
+    background-color: #95AD34;
+}
+
+.negative {
+    background-color: #B8B8B8;
+}
+</code></pre>
+
+<h2>Details</h2>
+
+<p>If applied to an input element
+    - Hide input element
+    - Insert &lt;a&gt; tag with initial button state
+    - When button is clicked update input element's value
+Otherwise
+    - applied to any other element and we'll have to store the value in a data attribute</p>
+
+<p>So if you have this:</p>
+
+<pre><code>&lt;input class="imAbutton" type="text"/&gt;
+</code></pre>
+
+<p>and do this:</p>
+
+<pre><code>$(".imAbutton").toggler();
+</code></pre>
+
+<p>you would end up with this:</p>
+
+<pre><code>&lt;input class="imAbutton" type="hidden" value="true"/&gt;
+&lt;a href="#" class="button positive"&gt;Yes&lt;/a&gt;
+</code></pre>
+
+<p>if you clicked the button you would end up with this:</p>
+
+<pre><code>&lt;input class="imAbutton" type="hidden" value="false"/&gt;
+&lt;a href="#" class="button negative"&gt;No&lt;/a&gt;
+</code></pre>
+
+<p>You could then do this with many different states:</p>
+
+<pre><code>$(".imAbutton").toggler({
+    states: [
+        { text: "Stop", value="stop", class="red"},
+        { text: "Slow Down", value="slow", class="yellow"},
+        { text: "Go", value="go", class="green"}
+    ]
+});
+</code></pre>
+
+<p>you would end up with the following states (in order of clicks, starting with the initial state):</p>
+
+<p>State 1:</p>
+
+<pre><code>&lt;input class="imAbutton" type="hidden" value="stop"/&gt;
+&lt;a href="#" class="button red"&gt;Stop&lt;/a&gt;
+</code></pre>
+
+<p>State 2:</p>
+
+<pre><code>&lt;input class="imAbutton" type="hidden" value="slow"/&gt;
+&lt;a href="#" class="button yellow"&gt;Slow Down&lt;/a&gt;
+</code></pre>
+
+<p>State 3:</p>
+
+<pre><code>&lt;input class="imAbutton" type="hidden" value="go"/&gt;
+&lt;a href="#" class="button green"&gt;Go&lt;/a&gt;
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">JQuery-Toggler maintained by <a href="https://github.com/BruceHubbard">BruceHubbard</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
