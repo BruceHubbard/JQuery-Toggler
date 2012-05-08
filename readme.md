@@ -1,6 +1,8 @@
 JQuery Button Toggler
 ========================
 
+GitHub Pages with working examples: http://brucehubbard.github.com/JQuery-Toggler/
+
 Turns any html element into a button that toggles between states on click.  It is a good alternative to checkboxes or any other situation where there is a finite amount of possibilities for the user to choose from.
 
 TODO
